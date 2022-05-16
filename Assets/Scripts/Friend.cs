@@ -56,4 +56,9 @@ public class Friend : MonoBehaviour
         dialogImage.SetActive(true);
         //tipImage.SetActive(false);
     }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        ShowDialog();
+    }
+    
 }
