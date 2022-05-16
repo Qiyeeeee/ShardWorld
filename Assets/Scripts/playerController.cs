@@ -9,28 +9,31 @@ public class playerController : MonoBehaviour
     private Collider2D coll;
     public GameObject myself;
 
-    [Header("ÒÆ¶¯²ÎÊı")]
+    [Header("ç§»åŠ¨å‚æ•°")]
     public float speed = 8f;
 
     float xVelocity;
 
-    [Header("ÌøÔ¾²ÎÊı")]
+    [Header("è·³è·ƒå‚æ•°")]
     public float jumpForce = 6f;
 
-    int jumpCount;//ÌøÔ¾´ÎÊı
+    int jumpCount;//è·³è·ƒæ¬¡æ•°
 
-    [Header("×´Ì¬")]
+    [Header("çŠ¶æ€")]
     public bool isOnGround;
 
-    [Header("»·¾³¼ì²â")]
+    [Header("ç¯å¢ƒæ£€æµ‹")]
     public LayerMask groundLayer;
 
-    //°´¼üÉèÖÃ
+    //æŒ‰é”®è®¾ç½®
     bool jumpPress;
 
     int speedID;
     int groundID;
     int fallID;
+    
+    //é€»è¾‘è®¾ç½®ï¼Œæ§åˆ¶å¯¹è¯é¡ºåº
+    public static int showflag = 5;
 
     void Start()
     {
@@ -68,7 +71,7 @@ public class playerController : MonoBehaviour
 
     void isOnGroundCheck()
     {
-        ////ÅĞ¶Ï½ÇÉ«Åö×²Æ÷ÓëµØÃæÍ¼²ã·¢Éú½Ó´¥
+        ////åˆ¤æ–­è§’è‰²ç¢°æ’å™¨ä¸åœ°é¢å›¾å±‚å‘ç”Ÿæ¥è§¦
         if (coll.IsTouchingLayers(groundLayer))
         {
             if(rb.velocity.y<1&& rb.velocity.y > -1)
@@ -88,7 +91,7 @@ public class playerController : MonoBehaviour
 
         rb.velocity = new Vector2(xVelocity * speed, rb.velocity.y);
 
-        //¾µÃæ·­×ª
+        //é•œé¢ç¿»è½¬
         if (xVelocity != 0)
         {
             transform.localScale = new Vector3(xVelocity, 1, 1);
@@ -97,19 +100,19 @@ public class playerController : MonoBehaviour
 
     void Jump()
     {
-        //ÔÚµØÃæÉÏ
+        //åœ¨åœ°é¢ä¸Š
         if (isOnGround)
         {
             jumpCount = 1;
         }
-        //ÔÚµØÃæÉÏÌøÔ¾
+        //åœ¨åœ°é¢ä¸Šè·³è·ƒ
         if (jumpPress && isOnGround)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpCount--;
             jumpPress = false;
         }
-        //ÔÚ¿ÕÖĞÌøÔ¾
+        //åœ¨ç©ºä¸­è·³è·ƒ
         else if (jumpPress && jumpCount > 1 && !isOnGround)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
