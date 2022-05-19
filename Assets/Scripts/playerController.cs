@@ -10,7 +10,7 @@ public class playerController : MonoBehaviour
     public GameObject myself;
 
     [Header("移动参数")]
-    public float speed = 8f;
+    public static float speed = 8f;
 
     float xVelocity;
 
